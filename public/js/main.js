@@ -15,11 +15,11 @@ const team2NameInput = team2TeamBox.querySelector('.team-name-input');
 const team1NameUpdateButton = team1TeamBox.querySelector('.team-name-button');
 const team2NameUpdateButton = team2TeamBox.querySelector('.team-name-button');
 
-const team1NameAddButton = team1TeamBox.querySelector('.team-score-inc-button');
-const team2NameAddButton = team2TeamBox.querySelector('.team-score-inc-button');
+const team1ScoreAddButton = team1TeamBox.querySelector('.team-score-inc-button');
+const team2ScoreAddButton = team2TeamBox.querySelector('.team-score-inc-button');
 
-const team1NameSubButton = team1TeamBox.querySelector('.team-score-dec-button');
-const team2NameSubButton = team2TeamBox.querySelector('.team-score-dec-button');
+const team1ScoreSubButton = team1TeamBox.querySelector('.team-score-dec-button');
+const team2ScoreSubButton = team2TeamBox.querySelector('.team-score-dec-button');
 
 // Output related
 const team1NameHeader = team1TeamBox.querySelector('.team-name');
@@ -30,6 +30,7 @@ const team2ScoreHeader = team2TeamBox.querySelector('.team-score');
 
 const main = () => {
   team1NameUpdateButton.addEventListener('click', (event) => {
+    // event.preventDefault();
     team1Name = team1NameInput.value;
     team1NameHeader.textContent = team1Name;
   });
@@ -37,6 +38,22 @@ const main = () => {
     team2Name = team2NameInput.value;
     team2NameHeader.textContent = team2Name;
   });
+  team1ScoreAddButton.addEventListener('click', (event) => {
+    team1Score += 1;
+    team1ScoreHeader.textContent = team1Score;
+  })
+  team2ScoreAddButton.addEventListener('click', (event) => {
+    team2Score += 1;
+    team2ScoreHeader.textContent = team2Score;
+  })
+  team1ScoreSubButton.addEventListener('click', (event) => {
+    team1Score -= 1;
+    team1ScoreHeader.textContent = team1Score;
+  })
+  team2ScoreSubButton.addEventListener('click', (event) => {
+    team2Score -= 1;
+    team2ScoreHeader.textContent = team2Score;
+  })
 }
 
 document.addEventListener('DOMContentLoaded', main);
