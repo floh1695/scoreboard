@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Scoreboard</title>
-    <link rel="stylesheet" href="/screen.css">
-  </head>
-  <body>
-    <h1>Hello, World!</h1>
-    <script src="/main.js" charset="utf-8"></script>
-  </body>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scoreboard</title>
+  <link rel="stylesheet" href="./css/screen.css">
+</head>
+
+<body>
+  <h1>Scoreboard</h1>
+  <section id="teamContainer">
+
+    <!-- Team 1 -->
+    <section id="team1TeamBox" class="teambox">
+      <h2 class="team-name"></h2>
+      <h3 class="team-score"></h3>
+      <form action="" class="team-name-update">
+        <p class="team-text"></p>
+        <input type="text" class="team-name-input">
+        <button class="team-name-button">Update</button>
+      </form>
+      <form action="" class="team-score-update">
+        <p class="team-text"></p>
+        <button class="team-score-inc-button">Add 1</button>
+        <button class="team-score-dec-button">Subtract 1</button>
+      </form>
+    </section>
+
+    <!-- Team 2 -->
+    <section id="team2TeamBox" class="teambox">
+      <h2 class="team-name"></h2>
+      <h3 class="team-score"></h3>
+      <form action="" class="team-name-update">
+        <p class="team-text"></p>
+        <input type="text" class="team-name-input">
+        <button class="team-name-button">Update</button>
+      </form>
+      <form action="" class="team-score-update">
+        <p class="team-text"></p>
+        <button class="team-score-inc-button">Add 1</button>
+        <button class="team-score-dec-button">Subtract 1</button>
+      </form>
+    </section>
+
+  </section>
+  <script src="./js/main.js" charset="utf-8"></script>
+</body>
+
 </html>

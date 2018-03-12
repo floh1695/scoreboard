@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,IAAK;EACH,MAAM,EAAE,IAAI;;AAGd,IAAK;EACH,MAAM,EAAE,CAAC;EACT,UAAU,EAAE,IAAI;EAChB,IAAI,EAAE,mBAAmB",
+"mappings": "AAAA,IAAK;EACD,MAAM,EAAE,IAAI;;AAGhB,IAAK;EACD,MAAM,EAAE,CAAC;EACT,UAAU,EAAE,IAAI;EAChB,IAAI,EAAE,mBAAmB",
 "sources": ["../scss/screen.scss"],
 "names": [],
 "file": "screen.css"
