@@ -2,27 +2,32 @@ class Team {
   constructor(name, query) {
     this.name = name;
     this.score = 0;
+    this.teamNode = document.querySelector(query);
 
-    const teamNode = document.querySelector(query);
-    teamNode.querySelector('.team-name-button').addEventListener('click', (event) => {
+    this.teamNode.querySelector('.team-name-button').addEventListener('click', (event) => {
       event.preventDefault();
-      const newName = teamNode.querySelector('.team-name-input').value;
+      const newName = this.teamNode.querySelector('.team-name-input').value;
       if (newName != '') {
         this.name = newName
       }
-      teamNode.querySelector('.team-name').textContent = this.name;
+      this.teamNode.querySelector('.team-name').textContent = this.name;
     });
-    teamNode.querySelector('.team-score-inc-button').addEventListener('click', (event) => {
+    this.teamNode.querySelector('.team-score-inc-button').addEventListener('click', (event) => {
       event.preventDefault();
       this.score += 1;
-      teamNode.querySelector('.team-score').textContent = this.score;
+      this.teamNode.querySelector('.team-score').textContent = this.score;
     });
-    teamNode.querySelector('.team-score-dec-button').addEventListener('click', (event) => {
+    this.teamNode.querySelector('.team-score-dec-button').addEventListener('click', (event) => {
       event.preventDefault();
       this.score -= 1;
-      teamNode.querySelector('.team-score').textContent = this.score;
+      this.teamNode.querySelector('.team-score').textContent = this.score;
     });
 
+  }
+
+  reset() {
+    this.score = 0;
+    this.teamNode.querySelector('.team-score').textContent = this.score;
   }
 }
 
@@ -76,7 +81,7 @@ class Game {
 
   restartGame() {
     this.teams.forEach((team) => {
-      team.score = 0;
+      team.reset();
     });
     this.periods.length = 0;
     this.period = 1;
