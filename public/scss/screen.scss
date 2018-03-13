@@ -1,3 +1,15 @@
+$cc-light: #ffe4fa;
+$cc-medium-light: #ffc4eb;
+$cc-medium: #88958d;
+$cc-medium-dark: #5c6f68;
+$cc-dark: #306b34;
+
+@mixin desktop {
+    @media (min-width: 800px) {
+        @content;
+    }
+}
+
 .html {
     height: 100%;
 }
@@ -7,16 +19,44 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     margin: 0;
     min-height: 100%;
     font: 16px / 1 sans-serif;
+    background-color: $cc-medium;
+    color: $cc-dark;
+}
+
+%box-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: .5em;
+    padding: .5em;
+    min-width: 250px;
+    @include desktop {
+        margin: 5vw;
+        padding: 2vw;
+    }
+    background-color: $cc-medium-dark;
+    border: .2em solid $cc-dark;
+    color: $cc-medium-light;
+}
+
+#periodContainer {
+    @extend %box-style;
 }
 
 #teamContainer {
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .team-box {
-  margin: 10vw;
+    @extend %box-style;
+}
+
+.team-name,
+.team-score {
+    margin: .2em;
 }
