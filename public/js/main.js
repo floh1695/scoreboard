@@ -41,12 +41,17 @@ class Game {
 
     document.querySelector('.next-period-button').addEventListener('click', (event) => {
       event.preventDefault();
-      if (this.gameOver) {
-        this.restartGame();
-        return;
+      if (!this.isGameOver()) {
+        this.nextPeriod();
       }
-      this.nextPeriod();
+      else {
+        this.restartGame();
+      }
     });
+  }
+
+  isGameOver() {
+    return this.period > this.lastPeriod;
   }
 
   nextPeriod() {
@@ -56,16 +61,15 @@ class Game {
     });
     this.periods.push(period);
   
-    if (this.period >= this.lastPeriod) {
-      this.gameOver = true;
+    this.period += 1;
+    if (this.isGameOver()) {
       document.querySelector('.period').textContent = 'Game Over!';
     }
     else {
-      this.period += 1;
       document.querySelector('.period').textContent = this.period;
     }
   
-    const paragraph = document.createElement('p');
+    const paragraph = document.createElement('li');
     paragraph.textContent = period;
     const display = document.querySelector('.periods-display');
     display.appendChild(paragraph);
