@@ -27,9 +27,13 @@ class Team {
   }
 }
 
+const teamCount = 2;
+const teams = [];
+
 const main = () => {
-  let team1 = new Team('Team 1', '#team1TeamBox');
-  let team2 = new Team('Team 2', '#team2TeamBox');
+  for (let i = 0; i < teamCount; i++) {
+    teams.push(new Team(`Team ${i}`, `#team${i}TeamBox`));
+  }
 }
 
 document.addEventListener('DOMContentLoaded', main);
