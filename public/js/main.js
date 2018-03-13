@@ -27,62 +27,71 @@ class Team {
   }
 }
 
+class Game {
+  constructor(periodCount, teamCount) {
+    this.period = 1;
+    this.lastPeriod = periodCount;
+    this.periods = [];
+    this.teams = [];
+    this.gameOver = false;
+    
+    for (let i = 1; i < teamCount + 1; i++) {
+      this.teams.push(new Team(`Team ${i}`, `#team${i}TeamBox`));
+    }
+
+    document.querySelector('.next-period-button').addEventListener('click', (event) => {
+      event.preventDefault();
+      if (this.gameOver) {
+        this.restartGame();
+        return;
+      }
+      this.nextPeriod();
+    });
+  }
+
+  nextPeriod() {
+    const period = [];
+    this.teams.forEach((team) => {
+      period.push(team.score);
+    });
+    this.periods.push(period);
+  
+    if (this.period >= this.lastPeriod) {
+      this.gameOver = true;
+      document.querySelector('.period').textContent = 'Game Over!';
+    }
+    else {
+      this.period += 1;
+      document.querySelector('.period').textContent = this.period;
+    }
+  
+    const paragraph = document.createElement('p');
+    paragraph.textContent = period;
+    const display = document.querySelector('.periods-display');
+    display.appendChild(paragraph);
+  }
+
+  restartGame() {
+    this.teams.forEach((team) => {
+      team.score = 0;
+    });
+    this.periods.length = 0;
+    this.period = 1;
+    this.gameOver = false;
+    document.querySelector('.period').textContent = 1;
+    const display = document.querySelector('.periods-display');
+    while (display.firstChild) {
+      display.removeChild(display.firstChild);
+    }
+  }
+}
+
 const teamCount = 2; // Config
 const periodCount = 2; // Config
-const teams = [];
-const periods = [];
-let currentPeriod = 1;
-let gameOver = false;
-
-function nextPeriod() {
-  const period = [];
-  teams.forEach((team) => {
-    period.push(team.score);
-  });
-  periods.push(period);
-
-  if (currentPeriod == periodCount) {
-    gameOver = true;
-    document.querySelector('.period').textContent = 'Game Over!';
-  }
-  else {
-    currentPeriod += 1;
-    document.querySelector('.period').textContent = currentPeriod;
-  }
-
-  paragraph = document.createElement('p');
-  paragraph.textContent = period;
-  display = document.querySelector('.periods-display');
-  display.appendChild(paragraph);
-}
-
-function restartGame() {
-  teams.forEach((team) => {
-    team.score = 0;
-  });
-  periods.length = 0;
-  currentPeriod = 1;
-  gameOver = false;
-  document.querySelector('.period').textContent = 1;
-  display = document.querySelector('.periods-display');
-  while (display.firstChild) {
-    display.removeChild(display.firstChild);
-  }
-}
+let game = null;
 
 const main = () => {
-  for (let i = 1; i < teamCount + 1; i++) {
-    teams.push(new Team(`Team ${i}`, `#team${i}TeamBox`));
-  }
-
-  document.querySelector('.next-period-button').addEventListener('click', (event) => {
-    event.preventDefault();
-    if (gameOver) {
-      restartGame();
-      return;
-    }
-    nextPeriod();
-  });
+  game = new Game(periodCount, teamCount);
 }
 
 document.addEventListener('DOMContentLoaded', main);
