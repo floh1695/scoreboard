@@ -34,6 +34,20 @@ const periods = [];
 let currentPeriod = 1;
 let gameOver = false;
 
+function restartGame() {
+  teams.forEach((team) => {
+    team.score = 0;
+  });
+  periods.length = 0;
+  currentPeriod = 1;
+  gameOver = false;
+  document.querySelector('.period').textContent = 1;
+  display = document.querySelector('.periods-display');
+  while (display.firstChild) {
+    display.removeChild(display.firstChild);
+  }
+}
+
 const main = () => {
   for (let i = 1; i < teamCount + 1; i++) {
     teams.push(new Team(`Team ${i}`, `#team${i}TeamBox`));
@@ -41,19 +55,8 @@ const main = () => {
   
   document.querySelector('.next-period-button').addEventListener('click', (event) => {
     event.preventDefault();
-    console.log(periods);
     if (gameOver) {
-      teams.forEach((team) => {
-        team.score = 0;
-      });
-      periods.length = 0;
-      currentPeriod = 1;
-      gameOver = false;
-      document.querySelector('.period').textContent = 1;
-      display = document.querySelector('.periods-display');
-      while (display.firstChild) {
-        display.removeChild(display.firstChild);
-      }
+      restartGame();
       return;
     }
 
