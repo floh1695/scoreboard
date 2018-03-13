@@ -1,4 +1,14 @@
 // Team data
+class Team {
+  constructor(name, query) {
+    this.name = name;
+    this.startingScore = 0;
+  }
+}
+
+team1 = new Team('Team 1', '#team1TeamBox');
+team2 = new Team('Team 2', '#team2TeamBox');
+
 let team1Name = 'Team 1';
 let team1Score = 0;
 
