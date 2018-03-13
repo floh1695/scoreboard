@@ -4,10 +4,10 @@ class Team {
     this.score = 0;
 
     // Set up listeners
-    let teamNode = document.querySelector(query);
+    const teamNode = document.querySelector(query);
     teamNode.querySelector('.team-name-button').addEventListener('click', (event) => {
       event.preventDefault();
-      let newName = teamNode.querySelector('.team-name-input').value;
+      const newName = teamNode.querySelector('.team-name-input').value;
       if (newName != '') {
         this.name = newName
       }
@@ -31,7 +31,7 @@ const teamCount = 2;
 const teams = [];
 
 const main = () => {
-  for (let i = 0; i < teamCount; i++) {
+  for (let i = 1; i < teamCount + 1; i++) {
     teams.push(new Team(`Team ${i}`, `#team${i}TeamBox`));
   }
 }
