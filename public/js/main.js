@@ -1,69 +1,35 @@
-// Team data
 class Team {
   constructor(name, query) {
     this.name = name;
-    this.startingScore = 0;
+    this.score = 0;
+
+    // Set up listeners
+    let teamNode = document.querySelector(query);
+    teamNode.querySelector('.team-name-button').addEventListener('click', (event) => {
+      event.preventDefault();
+      let newName = teamNode.querySelector('.team-name-input').value;
+      if (newName != '') {
+        this.name = newName
+      }
+      teamNode.querySelector('.team-name').textContent = this.name;
+    });
+    teamNode.querySelector('.team-score-inc-button').addEventListener('click', (event) => {
+      event.preventDefault();
+      this.score += 1;
+      teamNode.querySelector('.team-score').textContent = this.score;
+    });
+    teamNode.querySelector('.team-score-dec-button').addEventListener('click', (event) => {
+      event.preventDefault();
+      this.score -= 1;
+      teamNode.querySelector('.team-score').textContent = this.score;
+    });
+
   }
 }
 
-team1 = new Team('Team 1', '#team1TeamBox');
-team2 = new Team('Team 2', '#team2TeamBox');
-
-let team1Name = 'Team 1';
-let team1Score = 0;
-
-let team2Name = 'Team 2';
-let team2Score = 0;
-
-// User input
-const team1TeamBox = document.querySelector('#team1TeamBox');
-const team2TeamBox = document.querySelector('#team2TeamBox');
-
-const team1NameInput = team1TeamBox.querySelector('.team-name-input');
-const team2NameInput = team2TeamBox.querySelector('.team-name-input');
-
-const team1NameUpdateButton = team1TeamBox.querySelector('.team-name-button');
-const team2NameUpdateButton = team2TeamBox.querySelector('.team-name-button');
-
-const team1ScoreAddButton = team1TeamBox.querySelector('.team-score-inc-button');
-const team2ScoreAddButton = team2TeamBox.querySelector('.team-score-inc-button');
-
-const team1ScoreSubButton = team1TeamBox.querySelector('.team-score-dec-button');
-const team2ScoreSubButton = team2TeamBox.querySelector('.team-score-dec-button');
-
-// Output related
-const team1NameHeader = team1TeamBox.querySelector('.team-name');
-const team2NameHeader = team2TeamBox.querySelector('.team-name');
-
-const team1ScoreHeader = team1TeamBox.querySelector('.team-score');
-const team2ScoreHeader = team2TeamBox.querySelector('.team-score');
-
 const main = () => {
-  team1NameUpdateButton.addEventListener('click', (event) => {
-    // event.preventDefault();
-    team1Name = team1NameInput.value;
-    team1NameHeader.textContent = team1Name;
-  });
-  team2NameUpdateButton.addEventListener('click', (event) => {
-    team2Name = team2NameInput.value;
-    team2NameHeader.textContent = team2Name;
-  });
-  team1ScoreAddButton.addEventListener('click', (event) => {
-    team1Score += 1;
-    team1ScoreHeader.textContent = team1Score;
-  })
-  team2ScoreAddButton.addEventListener('click', (event) => {
-    team2Score += 1;
-    team2ScoreHeader.textContent = team2Score;
-  })
-  team1ScoreSubButton.addEventListener('click', (event) => {
-    team1Score -= 1;
-    team1ScoreHeader.textContent = team1Score;
-  })
-  team2ScoreSubButton.addEventListener('click', (event) => {
-    team2Score -= 1;
-    team2ScoreHeader.textContent = team2Score;
-  })
+  let team1 = new Team('Team 1', '#team1TeamBox');
+  let team2 = new Team('Team 2', '#team2TeamBox');
 }
 
 document.addEventListener('DOMContentLoaded', main);
