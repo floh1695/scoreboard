@@ -34,6 +34,28 @@ const periods = [];
 let currentPeriod = 1;
 let gameOver = false;
 
+function nextPeriod() {
+  const period = [];
+  teams.forEach((team) => {
+    period.push(team.score);
+  });
+  periods.push(period);
+
+  if (currentPeriod == periodCount) {
+    gameOver = true;
+    document.querySelector('.period').textContent = 'Game Over!';
+  }
+  else {
+    currentPeriod += 1;
+    document.querySelector('.period').textContent = currentPeriod;
+  }
+
+  paragraph = document.createElement('p');
+  paragraph.textContent = period;
+  display = document.querySelector('.periods-display');
+  display.appendChild(paragraph);
+}
+
 function restartGame() {
   teams.forEach((team) => {
     team.score = 0;
@@ -52,33 +74,14 @@ const main = () => {
   for (let i = 1; i < teamCount + 1; i++) {
     teams.push(new Team(`Team ${i}`, `#team${i}TeamBox`));
   }
-  
+
   document.querySelector('.next-period-button').addEventListener('click', (event) => {
     event.preventDefault();
     if (gameOver) {
       restartGame();
       return;
     }
-
-    const period = [];
-    teams.forEach((team) => {
-      period.push(team.score);
-    });
-    periods.push(period);
-    
-    if (currentPeriod == periodCount) {
-      gameOver = true;
-      document.querySelector('.period').textContent = 'Game Over!';
-    }
-    else {
-      currentPeriod += 1;
-      document.querySelector('.period').textContent = currentPeriod;
-    }
-
-    paragraph = document.createElement('p');
-    paragraph.textContent = period;
-    display = document.querySelector('.periods-display');
-    display.appendChild(paragraph);
+    nextPeriod();
   });
 }
 
