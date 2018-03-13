@@ -3,7 +3,6 @@ class Team {
     this.name = name;
     this.score = 0;
 
-    // Set up listeners
     const teamNode = document.querySelector(query);
     teamNode.querySelector('.team-name-button').addEventListener('click', (event) => {
       event.preventDefault();
